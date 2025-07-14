@@ -1,0 +1,19 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+      target: development
+    container_name: csharp-cli-dev-interactive
+    volumes:
+      - .:/app/src
+      - dotnet-packages:/root/.nuget/packages
+    working_dir: /app/src
+    stdin_open: true
+    tty: true
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    command: /bin/bash
+
+volumes:
+  dotnet-packages:
